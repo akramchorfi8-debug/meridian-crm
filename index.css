@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-cyber-900 text-white antialiased transition-colors duration-300;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  /* Light mode body override */
+  html.light body {
+    @apply bg-light-100 text-light-900;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(11, 15, 25, 0.5);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #00d4ff, #06b6d4);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #00fff2, #00d4ff);
+  }
+
+  html.light ::-webkit-scrollbar-track {
+    background: rgba(226, 232, 240, 0.5);
+  }
+}
+
+@layer components {
+  /* Glass morphism card - dark */
+  .glass-card {
+    @apply bg-cyber-800/50 backdrop-blur-xl border border-cyber-600/30 rounded-2xl shadow-card transition-colors duration-300;
+    background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(11, 15, 25, 0.9));
+  }
+
+  /* Light mode glass card */
+  .light .glass-card {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 250, 252, 0.95)) !important;
+    border-color: rgba(203, 213, 225, 0.6) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300 hover:border-neon-blue/30 hover:shadow-neon-blue;
+  }
+
+  /* Neon button */
+  .btn-neon {
+    @apply relative px-6 py-3 bg-gradient-to-r from-neon-blue to-neon-cyan text-cyber-900 font-semibold rounded-xl overflow-hidden transition-all duration-300;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.4), inset 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-neon:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-neon:active {
+    transform: translateY(0);
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply px-6 py-3 border border-cyber-500/50 text-gray-300 font-medium rounded-xl transition-all duration-300;
+  }
+
+  .light .btn-ghost {
+    @apply border-light-400 text-light-700;
+  }
+
+  .btn-ghost:hover {
+    @apply border-neon-blue/50 text-neon-blue bg-neon-blue/5;
+  }
+
+  /* Neon input */
+  .input-neon {
+    @apply w-full px-4 py-3 bg-cyber-800/80 border border-cyber-600/50 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-neon-blue/50 transition-all duration-300;
+  }
+
+  .light .input-neon {
+    @apply bg-white border-light-300 text-light-900 placeholder-light-500;
+  }
+
+  .light .input-neon:focus {
+    @apply border-neon-blue/70;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.15);
+  }
+
+  .input-neon:focus {
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.2);
+  }
+
+  /* Glow text */
+  .text-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+
+  /* Cyber grid background */
+  .cyber-grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .light .cyber-grid-bg {
+    background-image:
+      linear-gradient(rgba(0, 100, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 100, 255, 0.04) 1px, transparent 1px);
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-success {
+    @apply bg-neon-green/20 text-neon-green border border-neon-green/30;
+  }
+
+  .light .badge-success {
+    @apply bg-emerald-50 text-emerald-700 border-emerald-200;
+  }
+
+  .badge-warning {
+    @apply bg-amber-500/20 text-amber-400 border border-amber-500/30;
+  }
+
+  .light .badge-warning {
+    @apply bg-amber-50 text-amber-700 border-amber-200;
+  }
+
+  .badge-error {
+    @apply bg-red-500/20 text-red-400 border border-red-500/30;
+  }
+
+  .light .badge-error {
+    @apply bg-red-50 text-red-700 border-red-200;
+  }
+
+  .badge-info {
+    @apply bg-neon-blue/20 text-neon-blue border border-neon-blue/30;
+  }
+
+  .light .badge-info {
+    @apply bg-sky-50 text-sky-700 border-sky-200;
+  }
+
+  /* Modal overlay */
+  .modal-overlay {
+    @apply fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4;
+  }
+
+  /* Notification toast */
+  .toast {
+    @apply fixed bottom-24 left-1/2 -translate-x-1/2 z-50 px-6 py-3 rounded-2xl text-sm font-medium shadow-xl animate-slide-up;
+  }
+}
+
+@layer utilities {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 20px);
+  }
+
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.3s ease-out;
+  }
+}
+
+@keyframes slide-in-right {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
